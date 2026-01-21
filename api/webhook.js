@@ -18,7 +18,6 @@ export default async function handler(req, res) {
   const HF_URL = `https://router.huggingface.co/${HF_MODEL}`;
 
   try {
-    // Запрос к Hugging Face
     const response = await axios.post(
       HF_URL,
       { inputs: msg.text },
@@ -35,7 +34,6 @@ export default async function handler(req, res) {
       response.data.generated_text ||
       "Нет ответа 😔";
 
-    // Ответ в Telegram
     await axios.post(
       `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
       {
