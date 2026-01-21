@@ -8,11 +8,10 @@ const HF_API_KEY = process.env.HF_API_KEY;
 const HF_MODEL = "bigscience/bloomz-7b1";
 const HF_URL = `https://api-inference.huggingface.co/models/${HF_MODEL}`;
 
-export default async function handler(req, res) {
-  // Быстрый тест в браузере
-  if (req.method === "GET") {
-    return res.status(200).send("Webhook endpoint is alive");
-  }
+export default function handler(req, res) {
+  if (req.method === "GET") return res.status(200).send("OK GET");
+  return res.status(200).send("OK");
+}
 
   if (req.method !== "POST") {
     return res.status(405).send("Method Not Allowed");
@@ -80,4 +79,3 @@ export default async function handler(req, res) {
     }
     return res.status(500).send("Error");
   }
-}
